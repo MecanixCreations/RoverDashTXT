@@ -1,9 +1,7 @@
 <html><meta http-equiv="Content-Type" content="text/html;" charset="UTF-16">
     <title></title>
     <style>
-        html{
-            background-color: black;
-        }
+        html, body {background-color: black;margin: 0; height: 100%; overflow: hidden}
         p
         {
         font-family: "unscii";
@@ -34,7 +32,7 @@
         }
    </style>
     <body>
-        <p id="animationbox" contenteditable="true">Press Enter to play animation</p>
+        <p id="animationbox">Press Enter to play animation</p>
     </body>
     <script>
         
@@ -78,15 +76,32 @@
          ▓▀▓▀▓      
 ████████████████████
 ░░█░░░░░░░█░░░░░░░░░`;
+document.addEventListener('mousedown', (event) => {
+            if(Died == false){
+            Jumping = true
+            JumpTimer();
+                
+            }
+});
+/*
+document.addEventListener('mouseup', (event) => {
+          if(Died == false){
+            Jumping = true
+            //JumpTimer();
+                
+            }
+});*/
         document.addEventListener('keydown', function(event){
         if (event.key === ' '&& JumpLock == false || event.key === 'w' && JumpLock == false || event.key === "ArrowUp" && JumpLock == false){
             if(Died == false){
             Jumping = true
+            JumpTimer();
             //JumpTimer();
                 
             }
         }
         })
+
         document.addEventListener('keyup', function(event){
             if (event.key === 'a' || event.key === "ArrowLeft"){
             if(Died == false){
@@ -105,10 +120,10 @@
             }
         }
         else if (event.key === ' ' || event.key === 'w' || event.key === "ArrowUp"){
-            if(Died == false){
-            Jumping = false
+        //    if(Died == false){
+          //  Jumping = false
                 
-            }
+        //    }
         }
         })
         document.addEventListener('keydown', function(event) {
@@ -160,7 +175,7 @@
             console.log(MoveDirection);
                 
             }
-        }/*
+        }});/*
         else if (event.key === 'space' || event.key === 'w'){
             Jumping = true
         }*/
@@ -205,12 +220,11 @@ update();
 
             }
             
-        }/*
+        }
         async function JumpTimer() {
-            sleep(20);
+            await sleep(650);
             Jumping = false;
-            JumpLock = true;
-        }*/
+        }
         async function moveLevelBits() {
             if(Died == false){
 
@@ -446,6 +460,6 @@ update();
         function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
         }
-});
+
     </script>
 </html>
